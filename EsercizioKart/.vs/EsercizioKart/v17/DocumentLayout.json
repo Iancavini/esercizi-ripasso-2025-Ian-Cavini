@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ianca\\Repository_Programming\\Esercizi-Ripasso-Ian-Cavini\\esercizi-ripasso-2025-Ian-Cavini\\EsercizioKart\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0708ACDD-66B7-7706-E61F-A011F4A2CC7B}|Assembly-CSharp.csproj|c:\\users\\ianca\\repository_programming\\esercizi-ripasso-ian-cavini\\esercizi-ripasso-2025-ian-cavini\\eserciziokart\\assets\\scripts\\kartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0708ACDD-66B7-7706-E61F-A011F4A2CC7B}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\kartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KartController.cs",
+              "DocumentMoniker": "C:\\Users\\ianca\\Repository_Programming\\Esercizi-Ripasso-Ian-Cavini\\esercizi-ripasso-2025-Ian-Cavini\\EsercizioKart\\Assets\\Scripts\\KartController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\KartController.cs",
+              "ToolTip": "C:\\Users\\ianca\\Repository_Programming\\Esercizi-Ripasso-Ian-Cavini\\esercizi-ripasso-2025-Ian-Cavini\\EsercizioKart\\Assets\\Scripts\\KartController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\KartController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T13:30:08.27Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
