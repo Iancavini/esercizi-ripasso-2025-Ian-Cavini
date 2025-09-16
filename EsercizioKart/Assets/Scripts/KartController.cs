@@ -1,40 +1,73 @@
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class KartController : MonoBehaviour
 {
-    private SphereCollider _kartSphere;
-    private Rigidbody _kartRigidbody;
-    [SerializeField] private MeshRenderer _playerMesh;
-    private float _horizontalInput;
-    private float _verticalInput;
     //statistiche del kart
-    [SerializeField] public float _acceleration;
-    [SerializeField] public float _deceleration;
+    [SerializeField] public float _acceleration = 30f;
+    //[SerializeField] public float _deceleration;
     [SerializeField] public float _steeringSpeed = 80f;
-    [SerializeField] public float _maxSpeed = 30f;
-    [SerializeField] public float _driftMaxSpeed;
-    [SerializeField] public float _driftMaxSteeringSpeed;
+    [SerializeField] public float _speed;
+    //[SerializeField] public float _driftMaxSpeed;
+    //[SerializeField] public float _driftMaxSteeringSpeed;
+
+    [SerializeField] private SphereCollider _kartSphere;
+    [SerializeField] private Rigidbody _kartRigidbody;
+    private float _horizontalInput;
+
+    private float currentSpeed;
+    float rotate, currentRotate;
+
+    [SerializeField] public Transform _kartTransform;
+    public float gravity = 10f;
 
 
     private void Awake()
     {
-        _kartSphere = GetComponent<SphereCollider>();
-        _kartRigidbody = GetComponent<Rigidbody>();
     }//Awake
 
 
     void Update()
     {
-        //leggo sempre l'input dell'asse orizzontale
-        _horizontalInput = Input.GetAxis("Horizontal");
+        transform.position = _kartRigidbody.transform.position - new Vector3(0, .2f, 0);
 
-        //leggo sempre l'input dell'asse verticale
-        _verticalInput = Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            _speed = _acceleration;
+        }
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            int dir = Input.GetAxis("Horizontal") > 0 ? 1 : -1;
+            float amount = Mathf.Abs((Input.GetAxis("Horizontal")));
+            Steer(dir, amount);
+        }
+
+        currentSpeed = Mathf.SmoothStep(currentSpeed, _speed, Time.deltaTime * 12f); _speed = 0f;
+        currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * 4f); rotate = 0f;
+
+
     }//Update
 
-    private void MoveHorizontal()
+    private void FixedUpdate()
     {
-        _kartRigidbody.MovePosition(transform.position + Vector3.right * (_horizontalInput * _maxSpeed * Time.fixedDeltaTime));
-    }//MoveHorizontal
+        //Kart acceleration
+        _kartRigidbody.AddForce(_kartTransform.transform.forward * currentSpeed, ForceMode.Acceleration);
+
+        //Gravity
+        _kartRigidbody.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
+
+        //Steering
+        transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * 5f);
+        
+    }//FixedUpdate
+
+    public void Steer(int direction, float amount)
+    {
+        rotate = (_steeringSpeed * direction) * amount;
+    }//Steer
+
 
 }//KartController
