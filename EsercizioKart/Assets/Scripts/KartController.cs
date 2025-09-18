@@ -36,14 +36,14 @@ public class KartController : MonoBehaviour
         if (Input.GetKey(KeyCode.Z))
         {
             _speed = _acceleration;
-        }
+        }//if
 
         if (Input.GetAxis("Horizontal") != 0)
         {
             int dir = Input.GetAxis("Horizontal") > 0 ? 1 : -1;
             float amount = Mathf.Abs((Input.GetAxis("Horizontal")));
             Steer(dir, amount);
-        }
+        }//if
 
         currentSpeed = Mathf.SmoothStep(currentSpeed, _speed, Time.deltaTime * 12f); _speed = 0f;
         currentRotate = Mathf.Lerp(currentRotate, rotate, Time.deltaTime * 4f); rotate = 0f;
@@ -61,7 +61,17 @@ public class KartController : MonoBehaviour
 
         //Steering
         transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, transform.eulerAngles.y + currentRotate, 0), Time.deltaTime * 5f);
-        
+
+        RaycastHit hitOn;
+        RaycastHit hitNear;
+
+        Physics.Raycast(transform.position, Vector3.down, out hitOn, 1.1f);
+        Physics.Raycast(transform.position, Vector3.down, out hitNear, 2.0f);
+
+        //Normal rotation
+        _kartTransform.parent.up = Vector3.Lerp(_kartTransform.parent.up, hitNear.normal, Time.deltaTime * 8.0f);
+        _kartTransform.parent.Rotate(0, transform.eulerAngles.y, 0);
+
     }//FixedUpdate
 
     public void Steer(int direction, float amount)
