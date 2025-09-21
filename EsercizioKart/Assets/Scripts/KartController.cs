@@ -39,6 +39,10 @@ public class KartController : MonoBehaviour
         {
             _speed = _acceleration;
         }
+        else if (Input.GetKey(KeyCode.X))
+        {
+            _speed = 0;
+        }
         else
         {
             _speed = 0;
